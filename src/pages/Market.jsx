@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-
+import React, { useState,useEffect } from "react";
 import CommonSection from "../components/ui/Common-section/CommonSection";
-
 import NftCard from "../components/ui/Nft-card/NftCard";
-
 import { NFT__DATA } from "../assets/data/data";
-
 import { Container, Row, Col } from "reactstrap";
-
 import "../styles/market.css";
+// import { AuthContext } from "../AuthContext";
 
 const Market = () => {
   const [data, setData] = useState(NFT__DATA);
-
+  // const address = useContext(AuthContext);
+    const sendrequest = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/nft/market`);
+        const responsedata = await response.json();
+        setData(responsedata.items);
+      }catch(err)
+      {console.log(err)
+      }
+    }
+    sendrequest()
+  
   const handleCategory = () => {};
 
   const handleItems = () => {};
@@ -86,8 +93,8 @@ const Market = () => {
             </Col>
 
             {data?.map((item) => (
-              <Col lg="3" md="4" sm="6" className="mb-4" key={item.id}>
-                <NftCard item={item} />
+            <Col lg="3" md="4" sm="6" className="mb-4" key={item.id}>
+                <NftCard item={item}/>
               </Col>
             ))}
           </Row>

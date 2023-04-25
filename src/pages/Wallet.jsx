@@ -32,12 +32,13 @@ const wallet__data = [
 ];
 
 const Wallet = () => {
-
-  const openmetamask = async () => {
-      const {ethereum} = window;
-      console.log(ethereum);
-      return await ethereum.request({method : "eth_requestAccounts"})
-  }
+  
+  // const openmetamask = async () => {
+ 
+  //     // const {ethereum} = window;
+  //     // console.log(ethereum);
+  //     // return await ethereum.request({method : "eth_requestAccounts"})
+  // }
   return (
     <>
       <CommonSection title="Connect Wallet" />
@@ -57,7 +58,7 @@ const Wallet = () => {
 
             {wallet__data.map((item, index) => (
               <Col lg="3" md="4" sm="6" key={index} className="mb-4">
-                <div className="wallet__item" onClick={openmetamask}>
+                <div className="wallet__item">
                   <span>
                     <i className={item.icon}></i>
                   </span>

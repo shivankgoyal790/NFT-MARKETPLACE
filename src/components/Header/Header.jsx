@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import "./header.css";
 import { Container } from "reactstrap";
 
-import { NavLink, Link } from "react-router-dom";
-
+import { NavLink} from "react-router-dom";
+import { AuthContext } from "../../AuthContext";
 const NAV__LINKS = [
   {
     display: "Home",
@@ -14,6 +14,10 @@ const NAV__LINKS = [
     url: "/market",
   },
   {
+    display: "Owned",
+    url: "/owned",
+  },
+  {
     display: "Create",
     url: "/create",
   },
@@ -21,6 +25,10 @@ const NAV__LINKS = [
     display: "Contact",
     url: "/contact",
   },
+  {
+    display : "Wallet",
+    url: "/wallet"
+  }
 ];
 
 const Header = () => {
@@ -29,25 +37,26 @@ const Header = () => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        headerRef.current.classList.add("header__shrink");
-      } else {
-        headerRef.current.classList.remove("header__shrink");
-      }
-    });
+    // window.addEventListener("scroll", () => {
+    //   if (
+    //     document.body.scrollTop > 80 ||
+    //     document.documentElement.scrollTop > 80
+    //   ) {
+    //     headerRef.current.classList.add("header__shrink");
+    //   } else {
+    //     headerRef.current.classList.remove("header__shrink");
+    //   }
+    // });
 
-    return () => {
-      window.removeEventListener("scroll");
-    };
+    // return () => {
+    //   window.removeEventListener("scroll");
+    // };
   }, []);
+  const connectwallet = useContext(AuthContext); 
 
   const toggleMenu = () => menuRef.current.classList.toggle("active__menu");
-
-  return (
+  
+    return (
     <header className="header" ref={headerRef}>
       <Container>
         <div className="navigation">
@@ -82,10 +91,12 @@ const Header = () => {
               <span>
                 <i className="ri-wallet-line"></i>
               </span>
-              <Link to="/wallet">Connect Wallet</Link>
+              <span className="text-white" style={{width : "200px",overflow : "hidden"}} onClick={connectwallet.connectWallet}>{connectwallet.address ? connectwallet.address : "Connect Wallet"}
+              </span>
             </button>
 
             <span className="mobile__menu">
+            
               <i className="ri-menu-line" onClick={toggleMenu}></i>
             </span>
           </div>
