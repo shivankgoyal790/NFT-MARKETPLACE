@@ -1,4 +1,4 @@
-import React, { useCallback,useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import CommonSection from "../components/ui/Common-section/CommonSection";
 import NftCard from "../components/ui/Nft-card/NftCard";
@@ -19,12 +19,11 @@ const item = {
 };
 
 const Create = () => {
-	
 	const { createNFT } = useNFTMarket();
 	const [Newvalue, setnewvlue] = useState({
 		name: "",
 		price: "",
-		description: "",
+		creator: "",
 		image: undefined,
 	});
 	const [loading, setisloading] = useState(false);
@@ -32,7 +31,7 @@ const Create = () => {
 		setnewvlue((prev) => {
 			return {
 				name: prev.name,
-				description: prev.description,
+				creator: prev.creator,
 				image: value,
 				price: prev.price,
 			};
@@ -47,7 +46,7 @@ const Create = () => {
 				return {
 					name: value,
 					price: prev.price,
-					description: prev.description,
+					creator: prev.creator,
 					image: prev.image,
 				};
 			});
@@ -57,18 +56,18 @@ const Create = () => {
 				return {
 					name: prev.name,
 					price: value,
-					description: prev.description,
+					creator: prev.creator,
 					image: prev.image,
 				};
 			});
 		}
 
-		if (name === "description") {
+		if (name === "creator") {
 			setnewvlue((prev) => {
 				return {
 					name: prev.name,
 					price: prev.price,
-					description: value,
+					creator: value,
 					image: prev.image,
 				};
 			});
@@ -76,13 +75,12 @@ const Create = () => {
 	};
 	const Additemhandler = async (event) => {
 		event.preventDefault();
-		
-		try{
+
+		try {
 			setisloading(true);
-		await createNFT(Newvalue);
-		setisloading(false);
-		}
-		catch(err){
+			await createNFT(Newvalue);
+			setisloading(false);
+		} catch (err) {
 			setisloading(false);
 			console.log(err);
 			console.log("try again");
@@ -135,12 +133,6 @@ const Create = () => {
 									</div>
 
 									<div className="form__input">
-										<label htmlFor="">Minimum Bid</label>
-										<input type="text" placeholder="Enter minimum bid" />
-									</div>
-
-
-									<div className="form__input">
 										<label htmlFor="">Title</label>
 										<input
 											type="text"
@@ -152,16 +144,14 @@ const Create = () => {
 									</div>
 
 									<div className="form__input">
-										<label htmlFor="">Description</label>
-										<textarea
-											name="description"
-											value={Newvalue.description}
+										<label htmlFor="">creator</label>
+										<input
+											name="creator"
+											value={Newvalue.creator}
 											onChange={changehandler}
-											id=""
-											rows="7"
-											placeholder="Enter description"
+											placeholder="Enter creator"
 											className="w-100"
-										></textarea>
+										/>
 									</div>
 									<div>
 										<button

@@ -24,7 +24,7 @@ function App() {
 			const web3modal = new Web3Modal({ cacheProvider: true });
 			const instance = await web3modal.connect();
 			const provider = new Web3Provider(instance);
-			const signer = provider.getSigner();
+			const signer = provider.getSigner();	
 			const address = await signer.getAddress();
 			setSigner(signer);
 			setAddress(address);
