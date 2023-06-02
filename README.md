@@ -13,6 +13,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+Note: Install the react scripts
+### npm install react-scripts
 
 ### `npm test`
 
@@ -79,3 +81,24 @@ background-size: 100% 100%;
 border-color: #5142FC
 card-color: #343444
 body-color: #14141f
+
+# getting started with node(server)
+
+### npm install 
+To install all the dependency of the package json file.
+
+### nodemon app.js
+To start the nodemon server
+
+
+
+# Getting started with Hardhat
+
+To start with hardhat
+npm install --save-dev hardhat
+
+To compile the contracts
+npx hardhat compile
+
+to deploy the scripts
+npx hardhat run scripts/deploy.js
