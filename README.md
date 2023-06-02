@@ -92,13 +92,13 @@ To start the nodemon server
 
 
 
-# Getting started with Hardhat
+### Getting started with Hardhat
 
 To start with hardhat
-npm install --save-dev hardhat
+# npm install --save-dev hardhat
 
 To compile the contracts
-npx hardhat compile
+# npx hardhat compile
 
 to deploy the scripts
-npx hardhat run scripts/deploy.js
+# npx hardhat run scripts/deploy.js
